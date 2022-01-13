@@ -12,8 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductSKUModel {
-
+    @NotEmpty(message = "size  is required")
+    @NotNull(message = "Currency is required")
    private  String size;
+
    private ProductsModel productsModel;
 
    public ProductSKUModel(String size) {
