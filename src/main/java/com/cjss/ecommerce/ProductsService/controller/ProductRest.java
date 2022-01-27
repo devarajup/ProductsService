@@ -5,10 +5,7 @@ import com.cjss.ecommerce.ProductsService.models.ProductSKUModel;
 import com.cjss.ecommerce.ProductsService.models.ProductsModel;
 import com.cjss.ecommerce.ProductsService.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -23,7 +20,7 @@ public class ProductRest {
     }
 
    @PostMapping("/add-product-sku/{id}")
-    public Integer addProductSKU(@Valid @RequestBody ProductSKUModel model, @PathVariable Integer id) {
+    public String  addProductSKU(@Valid @RequestBody ProductSKUModel model, @PathVariable Integer id) {
         return productService.addProductSKU(id, model);
     }
 
@@ -34,4 +31,12 @@ public class ProductRest {
     ) {
         return productService.addPriceSKU(pid,sid,model);
     }
+    @GetMapping("/get-products/{pid}/{skuid}")
+    public PriceSKUModel getProductSKUPrice(
+                                   @PathVariable Integer pid,
+                                   @PathVariable Integer sid){
+
+    return productService.getPriceSKU(pid,sid);
+}
+
 }

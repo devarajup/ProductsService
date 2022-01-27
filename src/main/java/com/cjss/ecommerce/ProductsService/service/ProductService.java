@@ -23,16 +23,17 @@ public class ProductService {
 
 
     public String addProducts(ProductsModel model) {
-        productsRepository.save(getProductsEntity(model));
-        return "product added";
+       Integer id= productsRepository.save(getProductsEntity(model)).getProductCode();
+        return "product added with Id:"+id;
     }
 
-    public Integer addProductSKU(Integer id, ProductSKUModel model) {
+    public String addProductSKU(Integer id, ProductSKUModel model) {
         ProductsEntity entity = productsRepository.getById(id);
         ProductSKUEntity skuEntity = getProductSKUEntity(model);
         skuEntity.setProducts(entity);
 
-        return productSKURepository.save(skuEntity).getSkuCode();
+        Integer skuId= productSKURepository.save(skuEntity).getSkuCode();
+        return "SKU added successfully with SKU Id :"+skuId+" and product id :"+id;
     }
 
     public String addPriceSKU(Integer pid, Integer sid, PriceSKUModel model) {
@@ -40,9 +41,16 @@ public class ProductService {
             PriceSKUEntity entity = getPriceSKUEntity(model);
             entity.setProductSKUx(productSKURepository.getById(sid));
             priceSKURepository.save(entity);
-            return "Add price successfully";
+            return "Add price successfully to SKUId:"+sid;
         }
         return "not found";
+    }
+    public PriceSKUModel getPriceSKU(Integer pid, Integer sid) {
+        if (productsRepository.existsById(pid)&&productSKURepository.existsById(sid)) {
+            PriceSKUEntity entity = priceSKURepository.getById(sid);
+return new PriceSKUModel(entity.getPrice(), entity.getCurrency());
+        }
+        return null;
     }
     private ProductsEntity getProductsEntity(ProductsModel model) {
         return new ProductsEntity(model.getProductName(), model.getDescription());

@@ -1,6 +1,5 @@
 package com.cjss.ecommerce.ProductsService.entity;
 
-import com.cjss.ecommerce.ProductsService.models.ProductsModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

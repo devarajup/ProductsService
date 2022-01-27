@@ -20,7 +20,7 @@ public class PriceSKUEntity {
     private  String currency;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "SKU_code_fk")
+    @JoinColumn(name = "SKU_code_fk" ,unique = true)
     private ProductSKUEntity productSKUx;
 
     public PriceSKUEntity(String price, String currency) {

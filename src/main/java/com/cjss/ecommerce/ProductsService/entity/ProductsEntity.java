@@ -3,6 +3,7 @@ package com.cjss.ecommerce.ProductsService.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,6 +18,7 @@ public class ProductsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Integer    productCode;
+    @Column(unique = true)
     private  String  productName;
     private  String  description;
 

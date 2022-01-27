@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -17,6 +18,7 @@ public class ProductsModel {
 
     @NotNull(message = "product Name required")
     @NotEmpty(message = "product Name required")
+    @Column(unique = true)
     private  String  productName;
     @NotNull(message = "description required")
     @NotEmpty(message = "description required")
