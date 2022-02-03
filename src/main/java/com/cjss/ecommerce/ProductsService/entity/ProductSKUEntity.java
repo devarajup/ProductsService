@@ -24,7 +24,7 @@ public class ProductSKUEntity {
     @JoinColumn(name = "product_code_fk")
     private ProductsEntity products;
 
-    @OneToMany(mappedBy = "productSKUx")
+    @OneToMany(mappedBy = "productSKUx" )
     private   List<PriceSKUEntity> priceSKUEntities;
 
     public ProductSKUEntity(String size) {

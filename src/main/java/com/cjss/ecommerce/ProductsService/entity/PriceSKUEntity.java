@@ -14,16 +14,16 @@ public class PriceSKUEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private Integer id;
 
-    private  String price;
+    private  Double price;
     private  String currency;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "SKU_code_fk" ,unique = true)
     private ProductSKUEntity productSKUx;
 
-    public PriceSKUEntity(String price, String currency) {
+    public PriceSKUEntity(Double price, String currency) {
         this.price = price;
         this.currency=currency;
     }
