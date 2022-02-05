@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
-public class CustomCustomerIdGenerator extends SequenceStyleGenerator {
+public class CustomIdGenerator extends SequenceStyleGenerator {
 
 
     public static final String NUMBER_FORMAT_PARAMETER = "numberFormat";

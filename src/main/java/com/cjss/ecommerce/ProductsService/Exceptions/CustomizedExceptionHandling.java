@@ -1,6 +1,8 @@
 package com.cjss.ecommerce.ProductsService.Exceptions;
 
 
+import com.cjss.ecommerce.ProductsService.Exceptions.errors.DuplicateProduct;
+import com.cjss.ecommerce.ProductsService.Exceptions.errors.ProductNotFound;
 import com.cjss.ecommerce.ProductsService.models.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,14 +18,21 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class CustomizedExceptionHandling extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> UserNotFondHandleExceptions(Exception exception, WebRequest webRequest) {
+    @ExceptionHandler(DuplicateProduct.class)
+    public ResponseEntity<Object> DuplicateProductHandleExceptions(Exception exception, WebRequest webRequest) {
         ExceptionResponse response = new ExceptionResponse();
         response.setTimestamp(String.valueOf(LocalDateTime.now()));
         response.setMessage(exception.getLocalizedMessage());
-        response.setError(exception.getMessage());
         System.out.println(response.getMessage());
-        return     new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
+        return     new ResponseEntity<Object>(response, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+    @ExceptionHandler(ProductNotFound.class)
+    public ResponseEntity<Object> ProductNotFoundHandleExceptions(Exception exception, WebRequest webRequest) {
+        ExceptionResponse response = new ExceptionResponse();
+        response.setTimestamp(String.valueOf(LocalDateTime.now()));
+        response.setMessage(exception.getLocalizedMessage());
+        System.out.println(response.getMessage());
+        return     new ResponseEntity<Object>(response, HttpStatus.NOT_FOUND);
     }
 
 

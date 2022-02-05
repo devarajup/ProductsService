@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SkuIdModel {
-    private  Integer sid;
+    private  String sid;
 }

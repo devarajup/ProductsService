@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ExceptionResponse {
  private  String   timestamp;
- private  String   error;
 private  String message;
 }
